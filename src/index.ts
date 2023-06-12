@@ -1,6 +1,7 @@
 import { Workbook } from 'exceljs';
 import { IStudent, IProject } from "./types";
 import settings from './algoSettings';
+import { getModeForResolutionAtIndex } from 'typescript';
 
 async function main() {
   /*
@@ -128,10 +129,16 @@ async function main() {
       Project: student.AssignedProject
     });
   });
-  await outputWorkbook.xlsx.writeFile(settings.outputPath);
+  return {
+    outputWorkbook,
+    score: output.map(student => getScore(student)).reduce((totalScore = 0, score) => totalScore + score),
+  }
 }
 
-main();
+main().then((output) => {
+  console.log(`Total score achieved: ${output.score}`)
+  output.outputWorkbook.xlsx.writeFile(settings.outputPath);
+})
 
 /*
 Helper functions
