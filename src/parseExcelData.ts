@@ -2,6 +2,10 @@ import { Workbook } from "exceljs";
 import { IProject, IStudent } from "./types";
 import settings from "./algoSettings";
 
+/**
+ * Reads the Excel files and returns the data as JSON
+ * @returns [studentsData, projectsData]
+ */
 export default async (): Promise<[IStudent[], { [projectName: string]: IProject }]> => {
     /*
       Read Data

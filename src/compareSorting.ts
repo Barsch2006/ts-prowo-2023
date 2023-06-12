@@ -1,6 +1,11 @@
 import getScore from "./getScore";
 import { IStudent } from "./types";
 
+/**
+ * Compares all students with all students and swaps them if the score is higher
+ * @param students the students to sort
+ * @returns the sorted students
+*/
 export default (students: IStudent[]) => {
     for (let a = 0; a < students.length; a++) {
         for (let b = 0; b < students.length; b++) {

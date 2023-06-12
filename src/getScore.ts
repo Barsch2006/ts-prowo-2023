@@ -2,6 +2,7 @@ import { IStudent } from "./types";
 
 /**
  * Returns the score of a student
+ * @param student the student to get the score from
  */
 export default function getScore(student: IStudent): number {
     let score = 0;

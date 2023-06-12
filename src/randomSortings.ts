@@ -1,10 +1,18 @@
 import { IProject, IStudent } from "./types";
 
-export default (studentsData: IStudent[], projectsData: { [key: string]: IProject }): IStudent[] => {
-  // sort students randomly
-  let students: IStudent[] = studentsData.sort(() => Math.random() - 0.5);
+/**
+ * Sorts the students randomly and assigns them to a project depending on their choices
+ * @returns the sorted students
+ * @param studentsData the students to sort
+ * @param projectsData the projects to assign
+ * @returns the sorted students
+ */
+export default function (studentsData: Array<IStudent>, projectsData: { [key: string]: IProject }): IStudent[] {
+  let students: Array<IStudent> = studentsData;
 
-  // assign projects randomly
+  // randomize the students
+  students = shuffle(students);
+
   students.forEach((student: IStudent, index: number) => {
     let studentChoices: string[] = [
       student.Erstwahl,
@@ -38,4 +46,19 @@ export default (studentsData: IStudent[], projectsData: { [key: string]: IProjec
   });
 
   return students;
+}
+
+/**
+ * Shuffles array in place.
+ * @param {Array} a items An array containing the items.
+ */
+function shuffle(a: Array<any>) {
+  var j: any, x: any, i: any;
+  for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+  }
+  return a;
 }

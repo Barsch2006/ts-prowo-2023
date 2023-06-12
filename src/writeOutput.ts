@@ -1,6 +1,10 @@
 import { IStudent } from "./types";
 import { Workbook, Xlsx } from "exceljs";
 
+/**
+ * Writes the output to an excel file
+ * @returns the excel file as Xlsx object
+ */
 export default async (outputData: IStudent[]): Promise<Xlsx> => {
   const outputWorkbook = new Workbook();
   const outputSheet = outputWorkbook.addWorksheet("Output");
