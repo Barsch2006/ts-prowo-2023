@@ -13,5 +13,5 @@ export default {
     projectsExcelPath: "data/Projects.xlsx",
     outputPath: "data/Output.xlsx",
     randomRounds: 10,
-    everyRounds: 1
+    everyRounds: 3
 }

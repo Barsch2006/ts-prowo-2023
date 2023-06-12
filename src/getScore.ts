@@ -18,3 +18,15 @@ export default function getScore(student: IStudent): number {
 
     return score;
 }
+
+function getTotalScore(students: IStudent[]) {
+    let totalScore = 0;
+    for (const student of students) {
+        totalScore += getScore(student);
+    }
+    return totalScore;
+}
+
+export {
+    getTotalScore
+};

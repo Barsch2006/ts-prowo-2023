@@ -4,7 +4,7 @@ import randomSortings from './randomSortings';
 import compareSorting from './compareSorting';
 import parseExcelData from './parseExcelData';
 import writeOutput from './writeOutput';
-import getScore from './getScore';
+import { getTotalScore } from './getScore';
 import { Xlsx } from "exceljs";
 
 /**
@@ -17,25 +17,12 @@ async function main(): Promise<{ score: number, output: Xlsx }> {
   let projectsData: { [projectName: string]: IProject } = parsingResult[1];
 
   // run random sorting 10 times and compare the score of each sorting and take the best one
-  let students: IStudent[] = [];
-  let score = 0;
-  for (let i = 0; i < settings.randomRounds; i++) {
-    let tempStudents = randomSortings(studentsData, projectsData);
-    let tempScore = tempStudents.map(student => getScore(student)).reduce((totalScore = 0, score) => totalScore + score);
-    if (tempScore > score) {
-      score = tempScore;
-      students = tempStudents;
-    }
-    console.debug(`Random Round ${i + 1}: ${tempScore} | ${tempStudents[0].Name}`);
-  }
+  let students: IStudent[] = randomSortings(studentsData, projectsData);
 
-  for (let i = 0; i < settings.everyRounds; i++) {
-    students = compareSorting(students);
-    console.debug(`Every Round ${i + 1}: ${students.map(student => getScore(student)).reduce((totalScore = 0, score) => totalScore + score)} | ${students[0].Name}`);
-  }
+  students = compareSorting(students);
 
   return {
-    score: students.map(student => getScore(student)).reduce((totalScore = 0, score) => totalScore + score),
+    score: getTotalScore(students),
     output: await writeOutput(students)
   };
 }
