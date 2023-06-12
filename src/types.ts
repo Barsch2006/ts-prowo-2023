@@ -14,5 +14,5 @@ interface IStudent {
 
 export {
     IProject,
-    IStudent
+    IStudent,
 }
