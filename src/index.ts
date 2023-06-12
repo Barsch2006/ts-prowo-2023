@@ -19,6 +19,7 @@ async function main(): Promise<{ score: number, output: Xlsx }> {
   // run random sorting 10 times and compare the score of each sorting and take the best one
   let students: IStudent[] = randomSortings(studentsData, projectsData);
 
+  // ! bug: score_before is always the same as score_after
   students = compareSorting(students);
 
   return {

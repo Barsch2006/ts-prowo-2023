@@ -19,12 +19,13 @@ export default (students: IStudent[]) => {
             //get score after swap
             let score_after = getScore(students[a]) + getScore(students[b]);
             // swap back if score after swap is lower
-            if (score_after < score_before) {
-                // console.info(`Swapping Back ${score_after} | ${score_before} ${a}(${getScore(students[a])}) with ${b}(${getScore(students[b])})`);
+            if (score_after <= score_before) {
                 temp = students[a];
                 students[a] = students[b];
                 students[b] = temp;
             }
+            // ? console.info(`${score_before} -> ${score_after}`);
+            // ! score_before is always the same as score_after
         }
     }
 
