@@ -1,0 +1,6 @@
+{
+    "studentsExcelPath": "data/Students.xlsx",
+    "noVoteExcelPath": "data/NoVote.xlsx",
+    "projectsExcelPath": "data/Projects.xlsx",
+    "outputPath": "out/Output.xlsx"
+}
